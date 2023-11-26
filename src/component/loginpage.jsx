@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Loader from './loader';
 
 function Loginpage() {
+  const [showpreloader,setshowpreloader]=useState(true)
   return (
     <div className='h-screen w-screen items-center flex-col flex justify-center'>
 
@@ -28,8 +30,14 @@ function Loginpage() {
         </div>
 
         </div>
+        <div className='flex justify-center mt-5'>
+        <button className='bg-green-950 h-8 rounded-lg text-yellow-500 w-72 md:w-96 '>{showpreloader?<Loader/>:'Login'}</button>
 
+
+        </div>
+       
           </div>
+          
           
        
 
