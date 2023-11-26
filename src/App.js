@@ -1,10 +1,17 @@
 import logo from './logo.svg';
 import './App.css';
-import WeatherApp from './component/weatherapp';
+import { Route,BrowserRouter as Router, Routes } from 'react-router-dom';
+import Landpage from './component/landpage';
+
 
 function App() {
   return (
-    <WeatherApp/>
+    <Router>
+      <Routes>
+        <Route exact path='/' element={<Landpage/>} />
+      </Routes>
+    </Router>
+   
   );
 }
 
