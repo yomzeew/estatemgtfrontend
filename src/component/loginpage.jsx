@@ -3,7 +3,7 @@ import Loader from './loader';
 import logo from './images/logo.png'
 
 function Loginpage() {
-  const [showpreloader,setshowpreloader]=useState(true)
+  const [showpreloader,setshowpreloader]=useState(false)
   return (
     <div className='h-screen w-screen items-center flex-col flex justify-center'>
 
@@ -22,6 +22,10 @@ function Loginpage() {
         </div>
         <div className='flex-1 items-center flex justify-center'>
           <div>
+            <div className='mb-10'>
+              <div>Login to your account</div>
+              <div className='border-b-green-500 w-14 border-2'></div>
+            </div>
           <div>
           <div className='text-sm'>
           Phone Number or Email
@@ -41,11 +45,11 @@ function Loginpage() {
         </div>
 
         </div>
+        <div className='font-bold text-sm cursor-pointer'>FORGOT PASSWORD</div>
         <div className='flex justify-center mt-5'>
-        <button className='bg-green-950 h-8 rounded-lg text-yellow-500 w-72 md:w-96 '>{showpreloader?<Loader/>:'Login'}</button>
-
-
+        <button className='bg-green-950 h-8 rounded-lg text-yellow-500 w-72 md:w-96 '>{showpreloader?<Loader/>:'LOGIN'}</button>
         </div>
+        <div className='text-xs text-center mt-5'>I don't have account <span className='font-bold text-sm text-green-950 cursor-pointer'>REGISTER</span></div>
         
           </div>
           
