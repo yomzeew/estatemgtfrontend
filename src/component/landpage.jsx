@@ -16,7 +16,14 @@ function Landpage() {
   }, []); // Empty dependency array ensures the effect runs once on mount
   return (
     <div className="h-screen w-screen bg-gradient-to-t from-green-950 to-green-800 flex justify-center items-center">
-        <div><img src={logo} className='md:w-32 w-24 h-auto'/></div>
+      <div>
+      <div><img src={logo} className='md:w-32 w-24 h-auto'/></div>
+        <div className='abosolute bottom-0 text-white'>
+          Powered by Jit Solutions
+        </div>
+
+      </div>
+       
         
     </div>
   );

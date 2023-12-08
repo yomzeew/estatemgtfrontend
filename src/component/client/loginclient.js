@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import Loader from './loader';
-import logo from './images/logo.png'
-import api from './api/api'
+import Loader from '../loader';
+import logo from '../images/logo.png'
+import topimage from '../images/topforclient.png'
+import api from '../api/api'
 import { useNavigate } from 'react-router-dom';
 
-function Loginpage() {
+function Loginclient() {
   const [showpreloader,setshowpreloader]=useState(false)
   const [value,setvalue]=useState('');
   const [passcode,setpasscode]=useState('')
   const [errormessage,seterrormessage]=useState('')
   const navigate=useNavigate()
-  console.log(localStorage.getItem('myvalue'))
+  
   
   
   const handlesubmit=async()=>{
@@ -26,12 +27,12 @@ function Loginpage() {
     }
     const data={value:value,passcode:passcode }
     try{
-      const response=await api.post('/api/loginuser',data)
+      const response=await api.post('/api/loginclient',data)
       console.log(response)
       const result=response.data.message
       if (result===true){
-        localStorage.setItem('myvalue',value)
-        navigate(`/dashbaordtenant`)
+        localStorage.setItem('myvaluetwo',value)
+        navigate(`/client/dashboardclient`)
         
         setshowpreloader(false)
       }
@@ -51,7 +52,7 @@ function Loginpage() {
     }
   }
   const handleregister=()=>{
-    navigate('/register')
+    navigate('/client/register')
   }
   const handleback=()=>{
     navigate('/')
@@ -59,11 +60,20 @@ function Loginpage() {
   return (
     <div className='h-screen w-screen items-center flex-col flex justify-center'>
 
-        <div className=' bg-gradient-to-t from-green-950 to-green-800 h-32 w-full flex justify-between items-center px-3'>
+       
+       
+                <div className="absolute w-screen top-0 -z-50">
+                <div className='flex justify-start'>
+                    <img src={topimage} className='md:w-96 w-32' />
+                </div>
+
+            </div>
+            <div className='w-full flex justify-between items-center px-3'>
+
           <div>
-            <button onClick={handleback}><span className='fa fa-2x fa-arrow-left text-yellow-500'></span></button>
+            <button onClick={handleback}><span className='fa fa-2x fa-arrow-left text-green-500'></span></button>
           </div>
-          <div className='text-white text-xl text-center'>
+          <div className='text-green-900 text-xl text-center'>
             Welcome
           </div>
           <div>
@@ -122,4 +132,4 @@ function Loginpage() {
   );
 }
 
-export default Loginpage;
+export default Loginclient;
