@@ -10,6 +10,9 @@ module.exports = {
       },
       backgroundImage: {
         'hero-pattern': "url('/src/components/image/bg.jpg')",
+      },
+      height:{
+        '567':'600px'
       }
     },
   },
