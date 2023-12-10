@@ -8,6 +8,7 @@ const Displayproperty=()=>{
                 <div className="absolute px-2"><i class="fa fa-search text-slate-300" aria-hidden="true"></i></div>
                 <input className="md:w-96 w-56 h-8 outline-0 border rounded-2xl px-7"/>
             </div>
+            <div className='overflow-y-scroll h-96'>
             <div className="md:w-96 w-56 border border-dashed bg-slate-200 rounded-lg h-auto gap-5 flex flex-col md:flex-row px-3 py-5 mt-3 border-black">
                 <div className="md:w-1/2 w-full">
                     <img src={RealEstate} className='object-fit rounded-2xl' />
@@ -86,6 +87,9 @@ const Displayproperty=()=>{
                 </div>
 
             </div>
+
+            </div>
+            
 
 
 
