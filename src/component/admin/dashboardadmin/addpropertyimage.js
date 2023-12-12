@@ -1,36 +1,54 @@
-import { useState } from "react";
+import { useState,useRef } from "react";
 const Addimage=({showaddprops})=>{
    
 const [images, setImages] = useState([]);
+const fileInputRef = useRef(null);
 const handleback=()=>{
     showaddprops(true,false,false)
 }
+const handleButtonClick = () => {
+    // Trigger the click event on the file input
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
+    }
+  };
 
-
-const handleDrop = (e) => {
-  e.preventDefault();
-  const files = Array.from(e.dataTransfer.files);
-
-  // Process each dropped file
-  const newImages = files.map((file) => {
-    const reader = new FileReader();
-
-    reader.onload = (event) => {
-      // Get the base64 representation of the image
-      const base64Image = event.target.result;
-      setImages((prevImages) => [...prevImages, base64Image]);
-    };
-
-    // Read the image file as a data URL
-    reader.readAsDataURL(file);
-
-    return file;
-  });
-
-  // Update the state with the new images
-  setImages((prevImages) => [...prevImages, ...newImages]);
-};
-
+  const handleFileChange = (e) => {
+    // Handle the selected file(s)
+    const files = Array.from(e.target.files);
+  
+    files.forEach((file) => {
+      const reader = new FileReader();
+  
+      reader.onload = (event) => {
+        // Get the base64 representation of the image
+        const base64Image = event.target.result;
+        setImages((prevImages) => [...prevImages, base64Image]);
+      };
+  
+      // Read the image file as a data URL
+      reader.readAsDataURL(file);
+    });
+  };
+  
+  const handleDrop = (e) => {
+    e.preventDefault();
+    const droppedFiles = Array.from(e.dataTransfer.files);
+  
+    droppedFiles.forEach((file) => {
+      const reader = new FileReader();
+  
+      reader.onload = (event) => {
+        // Get the base64 representation of the image
+        const base64Image = event.target.result;
+        setImages((prevImages) => [...prevImages, base64Image]);
+      };
+  
+      // Read the image file as a data URL
+      reader.readAsDataURL(file);
+    });
+  };
+  
 const handleDragOver = (e) => {
   e.preventDefault();
 };
@@ -48,19 +66,23 @@ const removeImage = (index) => {
 
             </div>
             <div className="text-right">#Property ID 020</div>
-            <div>
+            <div className="h-400 overflow-y-scroll">
+
            
     <div
       style={dropzoneStyles}
-      onDrop={handleDrop}
-      
+      onDrop={handleDrop}  
       onDragOver={handleDragOver}
     >
+      
+    <button className="bg-green-900 text-yellow-500 px-3"   onClick={handleButtonClick}>Select Images</button>
       {images.length > 0 ? (
         <div>
+            {console.log(images)}
           {images.map((image, index) => (
             <div key={index} style={imageContainerStyles}>
-              <img src={image} alt={`Uploaded ${index}`} style={imageStyles} />
+              <img src={image
+            } alt={`Uploaded ${index}`} style={imageStyles} /> 
               <button onClick={() => removeImage(index)} className="bg-red-300 rounded-lg px-2">Remove</button>
             </div>
           ))}
@@ -69,6 +91,13 @@ const removeImage = (index) => {
         <p>Drag 'n' drop images here, or click to select them</p>
       )}
     </div>
+    <input
+        type="file"
+        ref={fileInputRef}
+        style={{ display: 'none' }}
+        onChange={handleFileChange}
+        multiple
+      />
 
             </div>
             <div className="flex justify-between mt-3">
