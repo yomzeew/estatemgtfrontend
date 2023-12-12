@@ -1,5 +1,9 @@
 import { useState } from "react"
 import Displayproperty from "./displayproperty";
+import Addproperty from "./addproperty";
+import Addpropertyform from "./addpropertyform";
+import Addimage from "./addpropertyimage";
+import Addform from "./addform";
 
 
 const Dashboardadmin=()=>{
@@ -66,7 +70,8 @@ const Dashboardadmin=()=>{
                     
                    
                     <div className="w-screen h-screen flex justify-center pt-16">
-                        <Displayproperty/>
+                   
+                    <Addform/>
                        
 
                     </div>

@@ -12,7 +12,11 @@ module.exports = {
         'hero-pattern': "url('/src/components/image/bg.jpg')",
       },
       height:{
-        '567':'600px'
+        '567':'600px',
+        '500':'500px',
+        '550':'550px',
+        '450':'450px',
+        '400':'400px'
       }
     },
   },
