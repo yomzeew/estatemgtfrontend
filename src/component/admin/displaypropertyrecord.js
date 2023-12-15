@@ -152,13 +152,13 @@ const DisplayPropertyRec=()=>{
                         {items.description}
                     </td>
                     <td className="text-center">
-                       {items.rent_fees}
+                       N{items.rent_fees}
                     </td>
                     <td className="text-center">
-                       {items.agent_fees}
+                       N{items.agent_fees}
                     </td>
                     <td className="text-center">
-                       {items.agreement}
+                       N{items.agreement}
                     </td>
                     <td className="text-center text-green-500">
                        <button onClick={()=>handleupdate(items.id)}   className="text-xs"><i class="fa fa-refresh" aria-hidden="true"></i>Update</button>

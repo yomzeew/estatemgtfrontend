@@ -2,6 +2,7 @@ import { useState } from "react"
 import Addform from "./addform";
 import Displayproperty from "./displayproperty";
 import DisplayPropertyRec from "./displaypropertyrecord";
+import Tenantproperty from "./addpropertytenant";
 
 
 const Dashboardadmin=()=>{
@@ -10,6 +11,7 @@ const Dashboardadmin=()=>{
     const [icon,seticon]=useState('fa-arrow-circle-right')
     const [bool,setbool]=useState(true)
     const [showcomponent,setshowcomponent]=useState('D')
+    const [propertyid,setpropertyid]=useState('')
     const showonlyicon=()=>{
         if(bool){
             setwidth('w-56')
@@ -34,6 +36,10 @@ const Dashboardadmin=()=>{
         setshowcomponent(comp)
 
     }
+    const handlegetid=(value)=>{
+        setpropertyid(value)
+    }
+
     return(
         <div >
             <div className="bg-slate-200 h-12 py-3 px-5 md:text-sm text-xs absolute top-0 w-screen z-50">
@@ -74,9 +80,16 @@ const Dashboardadmin=()=>{
                     
                    
                     <div className="w-screen h-screen flex justify-center pt-16">
-                       {showcomponent==='D' && <Displayproperty/>}
+                       {showcomponent==='D' && 
+                       <Displayproperty
+                       showtenant={(value)=>handleshowcomp(value)}
+                       propertyid={(value)=>handlegetid(value)}
+                       />}
                        {showcomponent==='P' &&<Addform/>}
                        {showcomponent==='DP'&& <DisplayPropertyRec/>}
+                       {showcomponent==='TD'&&<Tenantproperty 
+                       propertyid={propertyid}
+                       />}
                    
                    
                        
