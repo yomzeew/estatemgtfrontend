@@ -1,7 +1,9 @@
 import { useState,useRef } from "react";
-const Addimage=({showaddprops})=>{
+import api from "../api/api";
+const Addimage=({showaddprops,getid})=>{
    
 const [images, setImages] = useState([]);
+const [errormessage,seterrormessage]=useState('');
 const fileInputRef = useRef(null);
 const handleback=()=>{
     showaddprops(true,false,false)
@@ -56,6 +58,41 @@ const handleDragOver = (e) => {
 const removeImage = (index) => {
   setImages((prevImages) => prevImages.filter((_, i) => i !== index));
 };
+const submitdata=async()=>{
+  const imagestring=JSON.stringify(images)
+  const data=JSON.parse(localStorage.getItem('data'))
+  const newdata={client_id:data.client_id,
+                 client_name:data.client_name,
+                 property_address:data.property_address,
+                 category:data.category,
+                 description:data.description,
+                 rent_fees:JSON.parse(data.rent_fees),
+                 agent_fees:JSON.parse(data.agent_fees),
+                 agreement:data.agreement,
+                 images_base64:imagestring
+                }
+                console.log(newdata)
+                try{
+                  const response=await api.post('/api/addproperty',newdata)
+                  const datares=response.data.message
+                  if(datares==='successfully'){
+                    seterrormessage('Property Added')
+                    setTimeout(() => {
+                      showaddprops(false,true,false)
+                    }, 3000);
+                  
+
+                  }
+                  else{
+                    seterrormessage('Property Not Added')
+                  }
+
+
+                }catch(error){
+                  console.error(error)
+                }
+
+}
     return(
         <div className="w-64 md:w-96">
         <div className="border border-black border-dashed rounded-2xl bg-slate-200 h-500 px-3  ">
@@ -65,7 +102,8 @@ const removeImage = (index) => {
             </div>
 
             </div>
-            <div className="text-right">#Property ID 020</div>
+            <div className="text-right">#Client ID {getid}</div>
+            <div className="text-center text-green-600 text-lg">{errormessage}</div>
             <div className="h-400 overflow-y-scroll">
 
            
@@ -105,7 +143,7 @@ const removeImage = (index) => {
                         
                     </div>
             <div className="flex justify-center mt-3">
-            <button className="bg-green-900 rounded-xl px-3 text-yellow-500">
+            <button onClick={submitdata} className="bg-green-900 rounded-xl px-3 text-yellow-500">
                  Submit all data
             </button>
 

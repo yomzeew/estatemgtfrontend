@@ -1,9 +1,7 @@
 import { useState } from "react"
-import Displayproperty from "./displayproperty";
-import Addproperty from "./addproperty";
-import Addpropertyform from "./addpropertyform";
-import Addimage from "./addpropertyimage";
 import Addform from "./addform";
+import Displayproperty from "./displayproperty";
+import DisplayPropertyRec from "./displaypropertyrecord";
 
 
 const Dashboardadmin=()=>{
@@ -11,6 +9,7 @@ const Dashboardadmin=()=>{
     const [position, setposition]=useState('left-10')
     const [icon,seticon]=useState('fa-arrow-circle-right')
     const [bool,setbool]=useState(true)
+    const [showcomponent,setshowcomponent]=useState('D')
     const showonlyicon=()=>{
         if(bool){
             setwidth('w-56')
@@ -31,13 +30,17 @@ const Dashboardadmin=()=>{
        
 
     }
+    const handleshowcomp=(comp)=>{
+        setshowcomponent(comp)
+
+    }
     return(
         <div >
             <div className="bg-slate-200 h-12 py-3 px-5 md:text-sm text-xs absolute top-0 w-screen z-50">
                 <div className="flex justify-between">
-                    <div className="md:w-3/4"><i class="fa fa-home" aria-hidden="true"></i>Home</div>
+                    <div className="md:w-3/4"><button onClick={()=>handleshowcomp('D')}><i class="fa fa-home" aria-hidden="true"></i>Home</button></div>
                     <div className="flex justify-between md:w-1/4">
-                        <button className="bg-green-900 text-yellow-500 rounded-lg h-6 px-5"><i class="fa fa-plus" aria-hidden="true"></i>Add Property</button>
+                        <button onClick={()=>handleshowcomp('P')} className="bg-green-900 text-yellow-500 rounded-lg h-6 px-5"><i class="fa fa-plus" aria-hidden="true"></i>Add Property</button>
                         <div className="text-green-900">Hi Seun</div>
                     </div>
                 </div>
@@ -50,6 +53,7 @@ const Dashboardadmin=()=>{
                             <div>
                             <div ><i class={!bool?"fa text-yellow-500 fa-user-circle-o":"fa fa-2x text-yellow-500 fa-user-circle-o"} aria-hidden="true"></i> <span className="text-white">{!bool?'Client Record':''}</span> </div> 
                             <div className="mt-3"><i class={!bool?"fa text-yellow-500 fa-user":"fa fa-2x text-yellow-500 fa-user"} aria-hidden="true"></i> <span className="text-white">{!bool?'Tenant Record':''}</span> </div> 
+                            <div onClick={()=>handleshowcomp('DP')} className="mt-3 cursor-pointer"><i class={!bool?"fa text-yellow-500 fa-list":"fa fa-2x text-yellow-500 fa-list"} aria-hidden="true"></i> <span className="text-white">{!bool?'Property Record':''}</span> </div> 
                             <div className="mt-3"><i class={!bool?"fa text-yellow-500  fa-file-o":"fa fa-2x text-yellow-500 fa-file-o"} aria-hidden="true"></i> <span className="text-white">{!bool?'Generate Invoice/Receipt':''}</span> </div> 
                             <div className="mt-3"><i class={!bool?"fa text-yellow-500 fa-balance-scale":"fa fa-2x text-yellow-500 fa-balance-scale"} aria-hidden="true"></i><span className="text-white">{!bool?'Account Section':''}</span> </div> 
                             </div>
@@ -70,8 +74,11 @@ const Dashboardadmin=()=>{
                     
                    
                     <div className="w-screen h-screen flex justify-center pt-16">
+                       {showcomponent==='D' && <Displayproperty/>}
+                       {showcomponent==='P' &&<Addform/>}
+                       {showcomponent==='DP'&& <DisplayPropertyRec/>}
                    
-                    <Addform/>
+                   
                        
 
                     </div>

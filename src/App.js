@@ -10,7 +10,7 @@ import Loginclient from './component/client/loginclient';
 import Registerclient from './component/client/registerclient';
 import Error404 from './component/error/error404';
 import Dashbaordclient from './component/client/dashboardclient';
-import Dashboardadmin from './component/admin/dashboardadmin/dashboard';
+import Dashboardadmin from './component/admin/dashboard';
 
 
 
