@@ -1,7 +1,7 @@
 import { useState } from "react"
-import Addform from "./addform";
+import Addform from "./property/addform";
 import Displayproperty from "./displayproperty";
-import DisplayPropertyRec from "./displaypropertyrecord";
+import DisplayPropertyRec from "./property/displaypropertyrecord";
 import Tenantproperty from "./addpropertytenant";
 
 

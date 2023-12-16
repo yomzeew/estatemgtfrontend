@@ -28,7 +28,7 @@ const Addtenantform=({tenantid,backfunc,propertyid})=>{
 
     },[])
     
-    const handlesubmit=()=>{
+    const handlesubmit=async()=>{
         if(!propertyaddress){
             seterrormessage('Please Enter Address')
             return
@@ -45,8 +45,30 @@ const Addtenantform=({tenantid,backfunc,propertyid})=>{
             seterrormessage('Please Enter Agreement fees ')
             return
         }
-        const data={property_id:propertyid,tenant_id:tenantid,rent_fees:rentfees,agent_fees:agentfees,agreement:agreementfees}
-        localStorage.setItem('data',JSON.stringify(data))
+        const total_fees=JSON.parse(rentfees)+JSON.parse(agentfees)+JSON.parse(agreementfees)
+        const data={tenant_id:tenantid,property_id:propertyid,rent_fees:JSON.parse(rentfees),agent_fees:JSON.parse(agentfees),agreement:agreementfees,total_fees:JSON.stringify(total_fees),payment_date:'2023-01-01',payment_status:'unpaid'}
+        console.log(data)
+        try{
+            const response=await api.post('/api/addrent',data)
+            const datares=response.data.message
+            console.log(response.data.data)
+            if(datares==='successfully'){
+                seterrormessage('Successful Added')
+
+            }
+          
+              
+            
+
+        }catch(error){
+            console.error(error)
+            if (error.response && error.response.status===422){
+                seterrormessage('Already Allocated')
+
+            }
+          
+        }
+        
        
     }
     const handleback=()=>{

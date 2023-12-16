@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import api from "../api/api"
+import api from "../../api/api"
 const Addproperty=({showform,clientname,id})=>{
     const [name,setname]=useState('Oluwasuyi Babayomi')
     const [clientid,setclientid]=useState(1)
