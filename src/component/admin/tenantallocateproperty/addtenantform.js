@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import api from "../api/api";
+import api from "../../api/api";
 
 
 const Addtenantform=({tenantid,backfunc,propertyid})=>{
@@ -46,7 +46,7 @@ const Addtenantform=({tenantid,backfunc,propertyid})=>{
             return
         }
         const total_fees=JSON.parse(rentfees)+JSON.parse(agentfees)+JSON.parse(agreementfees)
-        const data={tenant_id:tenantid,property_id:propertyid,rent_fees:JSON.parse(rentfees),agent_fees:JSON.parse(agentfees),agreement:agreementfees,total_fees:JSON.stringify(total_fees),payment_date:'2023-01-01',payment_status:'unpaid'}
+        const data={tenant_id:tenantid,property_id:propertyid,rent_fees:JSON.parse(rentfees),agent_fees:JSON.parse(agentfees),agreement:agreementfees,total_fees:JSON.stringify(total_fees),payment_status:'unpaid'}
         console.log(data)
         try{
             const response=await api.post('/api/addrent',data)

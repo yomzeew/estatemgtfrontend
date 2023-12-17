@@ -2,7 +2,8 @@ import { useState } from "react"
 import Addform from "./property/addform";
 import Displayproperty from "./displayproperty";
 import DisplayPropertyRec from "./property/displaypropertyrecord";
-import Tenantproperty from "./addpropertytenant";
+import Tenantproperty from "./tenantallocateproperty/addpropertytenant";
+import TenantPaymentRecord from "./transaction/tenantpayment";
 
 
 const Dashboardadmin=()=>{
@@ -60,6 +61,7 @@ const Dashboardadmin=()=>{
                             <div ><i class={!bool?"fa text-yellow-500 fa-user-circle-o":"fa fa-2x text-yellow-500 fa-user-circle-o"} aria-hidden="true"></i> <span className="text-white">{!bool?'Client Record':''}</span> </div> 
                             <div className="mt-3"><i class={!bool?"fa text-yellow-500 fa-user":"fa fa-2x text-yellow-500 fa-user"} aria-hidden="true"></i> <span className="text-white">{!bool?'Tenant Record':''}</span> </div> 
                             <div onClick={()=>handleshowcomp('DP')} className="mt-3 cursor-pointer"><i class={!bool?"fa text-yellow-500 fa-list":"fa fa-2x text-yellow-500 fa-list"} aria-hidden="true"></i> <span className="text-white">{!bool?'Property Record':''}</span> </div> 
+                            <div onClick={()=>handleshowcomp('T')} className="mt-3 cursor-pointer"><i class={!bool?"fa text-yellow-500 fa-exchange":"fa fa-2x text-yellow-500 fa-exchange"} aria-hidden="true"></i> <span className="text-white">{!bool?'Transaction Record(Tenant)':''}</span> </div> 
                             <div className="mt-3"><i class={!bool?"fa text-yellow-500  fa-file-o":"fa fa-2x text-yellow-500 fa-file-o"} aria-hidden="true"></i> <span className="text-white">{!bool?'Generate Invoice/Receipt':''}</span> </div> 
                             <div className="mt-3"><i class={!bool?"fa text-yellow-500 fa-balance-scale":"fa fa-2x text-yellow-500 fa-balance-scale"} aria-hidden="true"></i><span className="text-white">{!bool?'Account Section':''}</span> </div> 
                             </div>
@@ -90,6 +92,7 @@ const Dashboardadmin=()=>{
                        {showcomponent==='TD'&&<Tenantproperty 
                        propertyid={propertyid}
                        />}
+                       {showcomponent==='T' &&<TenantPaymentRecord/>}
                    
                    
                        

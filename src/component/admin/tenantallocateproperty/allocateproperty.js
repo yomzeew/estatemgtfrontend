@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import api from "../api/api"
+import api from "../../api/api"
 import Addtenantform from "./addtenantform"
 const Allocateproperty=({propertyid})=>{
     const [tenantid,settenantid]=useState(1)

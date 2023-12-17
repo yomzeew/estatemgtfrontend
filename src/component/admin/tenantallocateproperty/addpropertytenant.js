@@ -5,8 +5,8 @@ const Tenantproperty = ({propertyid}) => {
     
     return (
         <div>
-          
            <Allocateproperty
+        
            propertyid={propertyid}
             />
             
