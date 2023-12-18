@@ -105,25 +105,33 @@ const TenantPaymentRecord=()=>{
             seterrormessage('Enter Amount');
             return
         };
-        try{
             const response=await api.get('/api/selectallrent')
-            const data=response.data.data
-            const datauser=data.filter((item)=>(
+            const datares=response.data.data
+            const datauser=datares.filter((item)=>(
                 item.tenant_id===tenantid
             
                 ))
             const agentfee=datauser[0].agent_fees
             const rentfee=datauser[0].rent_fees
             const agreementfees=datauser[0].agreement
-            
-           }catch(error){
-            
-    
-           } 
-         
+            //check paymentstatus
+            let paymentstatus
+            if(advancefees<totalfees){
+                paymentstatus='incomplete'
 
-
-        const data={tenant_id:tenantid,total_fees:totalfees,advance_payment:advancefees,rent_days:'',payment_status:'',payment_date:''}
+            }
+            else{
+                paymentstatus='complete'
+            }
+            const getrentfee=JSON.parse(advancefees)-((JSON.parse(agentfee))+(JSON.parse(agreementfees)))
+            //GET DAYS
+            const noofyear=getrentfee/rentfee
+            const noofdays=noofyear*365
+            const getyear=new Date().getFullYear()
+            const getmonth=new Date().getMonth()+1
+            const getdate=new Date().getDate()
+            const payment_date=getyear+"-"+getmonth+"-"+getdate
+        const data={tenant_id:tenantid,total_fees:totalfees,advance_payment:advancefees,rent_days:noofdays,payment_status:paymentstatus,payment_date:payment_date}
     }
     
 
