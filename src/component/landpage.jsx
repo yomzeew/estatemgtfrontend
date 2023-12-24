@@ -19,7 +19,7 @@ function Landpage() {
       <div>
       <div><img src={logo} className='md:w-32 w-24 h-auto'/></div>
         <div className='abosolute bottom-0 text-white'>
-          Powered by Jit Solutions
+          Powered by Lawson Tech
         </div>
 
       </div>
