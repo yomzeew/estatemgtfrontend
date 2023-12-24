@@ -153,9 +153,10 @@ const Dashbaordtenant = () => {
             {showreceipt &&<div className="flex justify-center">
                 <div>
                 <div className="flex justify-center">
-                <button onClick={()=>setshowreceipt(false)} className="bg-red-500 text-white px-3 rounded-xl"><i class="fa fa-times" aria-hidden="true"></i>Close</button>
+
+                <button  onClick={()=>setshowreceipt(false)} className="absolute z-50 bg-red-500 text-white px-3 rounded-xl"><i class="fa fa-times" aria-hidden="true"></i>Close</button>
             </div>
-           <div className='absolute z-50 left-16 md:left-40 bg-white'>
+           <div className='absolute z-40 left-16 md:left-40 bg-white'>
                 
                 <div className='overflow-y-scroll'>
                 <Receipt
