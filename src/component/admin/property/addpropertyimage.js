@@ -69,6 +69,7 @@ const submitdata=async()=>{
                  rent_fees:JSON.parse(data.rent_fees),
                  agent_fees:JSON.parse(data.agent_fees),
                  agreement:data.agreement,
+                 available_status:data.available_status,
                  images_base64:imagestring
                 }
                 console.log(newdata)

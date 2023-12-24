@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import api from '../api/api'
 import RealEstate from './image/Real-Estate-2.jpg'
 
@@ -6,6 +6,15 @@ const Displayproperty=({showtenant,propertyid})=>{
     const[data,setdata]=useState([])
     const [newimage,setnewimage]=useState([])
     const [viewimage,setviewimage]=useState(false)
+    const [searchvalue,setsearchvalue]=useState('')
+    const [errormessage,seterrormessage]=useState('')
+    const [checked,setchecked]=useState(true)
+
+    const checkedRefone=useRef(null)
+    const checkedReftwo=useRef(null)
+ 
+  
+ 
     const fetchdata=async()=>{
         try{
             const response=await api.get('/api/selectproperty')
@@ -23,6 +32,73 @@ const Displayproperty=({showtenant,propertyid})=>{
         fetchdata()
 
     },[])
+    const handlenotavailable=async(e)=>{
+        if(e.target.checked===true){
+            const value='Not Available'
+            setsearchvalue(value)
+            const datatwo={value:value}
+            try{
+                const response=await api.post('/api/searchinputproperty',datatwo)
+                const datares=response.data.data
+                console.log(datares)
+                checkedRefone.current.checked=!checked
+                if(datares.length>0 && datares!=='undefined'){
+                    setdata(datares)
+                    
+                    seterrormessage('')
+    
+                }
+                else{
+
+                    seterrormessage('Record not found')
+                }
+              
+    
+    
+            }catch(error){
+    
+            }
+        }
+        else{
+            fetchdata()
+        }
+ 
+
+    }
+    const handleavailable=async(e)=>{
+        if(e.target.checked===true){
+            const value='Available'
+            setsearchvalue(value)
+            const datatwo={value:value}
+            try{
+                const response=await api.post('/api/searchinputproperty',datatwo)
+                const datares=response.data.data
+                console.log(datares)
+                checkedReftwo.current.checked=!checked
+                if(datares.length>0 && datares!=='undefined'){
+                    setdata(datares)
+                   
+                    seterrormessage('')
+    
+                }
+                else{
+                  
+                    seterrormessage('Record not found')
+                }
+              
+    
+    
+            }catch(error){
+    
+            }
+        }
+        else{
+            fetchdata()
+        }
+ 
+ 
+    }
+   
     const handleimages=(value)=>{
         setviewimage(true)
         setnewimage(value)
@@ -60,8 +136,18 @@ const Displayproperty=({showtenant,propertyid})=>{
 
                 }
             <div className=''>
-                <div className="absolute px-2"><i class="fa fa-search text-slate-300" aria-hidden="true"></i></div>
-                <input className="md:w-96 w-56 h-8 outline-0 border rounded-2xl px-7"/>
+              
+                <div><i class="fa fa-search text-slate-300" aria-hidden="true"></i>Search By:</div>
+                <div className='text-center text-red-500'>{errormessage}</div>
+                <div className='flex gap-1'>
+                   
+                <span className='text-sm'>Available:</span>
+                <input ref={checkedRefone} onChange={(e)=>handleavailable(e)} type='checkbox' className='w-6 h-6'/>
+                <span className='text-sm'>Not Available:</span>
+                <input ref={checkedReftwo}  onChange={(e)=>handlenotavailable(e)} type='checkbox' className='w-6 h-6'/>
+
+                </div>
+               
             </div>
             <div className='overflow-y-scroll h-567'>
             {data.length>0&&data.map((items,index)=>{

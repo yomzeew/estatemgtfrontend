@@ -36,7 +36,7 @@ const Addpropertyform=({showaddprops,showaddimage,getname,getid})=>{
             seterrormessage('Please Enter Agreement fees ')
             return
         }
-        const data={client_id:getid,client_name:getname,property_address:propertyaddress,category:typeofproperty,description:description,rent_fees:rentfees,agent_fees:agentfees,agreement:agreementfees}
+        const data={client_id:getid,client_name:getname,property_address:propertyaddress,category:typeofproperty,description:description,rent_fees:rentfees,agent_fees:agentfees,agreement:agreementfees,available_status:'Available'}
         localStorage.setItem('data',JSON.stringify(data))
         showaddimage(false,false,true)
     }

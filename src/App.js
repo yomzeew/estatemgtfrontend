@@ -11,6 +11,7 @@ import Registerclient from './component/client/registerclient';
 import Error404 from './component/error/error404';
 import Dashbaordclient from './component/client/dashboardclient';
 import Dashboardadmin from './component/admin/dashboard';
+import Receipt from './component/admin/receipt/receipt';
 
 
 
@@ -29,6 +30,7 @@ function App() {
         <Route exact path='/client/register' element={<Registerclient/>} />
         <Route exact path='/client/dashboardclient' element={<Dashbaordclient/>} />
         <Route exact path='/admin/dashboardadmin' element={<Dashboardadmin/>} />
+        <Route exact path='/admin/receipt' element={<Receipt/>}/>
         <Route exact path='*' element={<Error404/>} />
       </Routes>
     </Router>

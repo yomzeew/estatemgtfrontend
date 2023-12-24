@@ -46,7 +46,11 @@ const DisplayPropertyRec=()=>{
             const datares=response.data.message
             console.log(datares)
             if(datares==='User deleted successfully'){
-                seterrormessage('User deleted successfully')
+                seterrormessage('Property deleted successfully')
+                setconfirmdelete(false)
+                fetchdata()
+            
+
             }
          
 
@@ -123,6 +127,9 @@ const DisplayPropertyRec=()=>{
                     <td className="text-center">
                         Agreement Fees
                     </td>
+                    <td className="text-center">
+                        Available Status
+                    </td>
                     <td className="bg-green-900 px-5 text-center text-white">
                        Update Record
                     </td>
@@ -159,6 +166,9 @@ const DisplayPropertyRec=()=>{
                     </td>
                     <td className="text-center">
                        N{items.agreement}
+                    </td>
+                    <td className="text-center">
+                       {items.available_status}
                     </td>
                     <td className="text-center text-green-500">
                        <button onClick={()=>handleupdate(items.id)}   className="text-xs"><i class="fa fa-refresh" aria-hidden="true"></i>Update</button>
