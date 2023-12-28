@@ -7,6 +7,7 @@ import TenantPaymentRecord from "./transaction/tenantpayment";
 import TenantRecord from "./tenantuser/tenantRecord";
 import ClientRecord from "./clientuser/clientrecord";
 import ReceiptGenerator from "./receipt/receiptGenerator";
+import SendNotice from "./sendnotification/sendnotice";
 
 
 const Dashboardadmin=()=>{
@@ -66,6 +67,7 @@ const Dashboardadmin=()=>{
                             <div onClick={()=>handleshowcomp('DP')} className="mt-3 cursor-pointer"><i class={!bool?"fa text-yellow-500 fa-list":"fa fa-2x text-yellow-500 fa-list"} aria-hidden="true"></i> <span className="text-white">{!bool?'Property Record':''}</span> </div> 
                             <div onClick={()=>handleshowcomp('T')} className="mt-3 cursor-pointer"><i class={!bool?"fa text-yellow-500 fa-exchange":"fa fa-2x text-yellow-500 fa-exchange"} aria-hidden="true"></i> <span className="text-white">{!bool?'Transaction Record(Tenant)':''}</span> </div> 
                             <div  onClick={()=>handleshowcomp('R')} className="mt-3 cursor-pointer"><i class={!bool?"fa text-yellow-500  fa-file-o":"fa fa-2x text-yellow-500 fa-file-o"} aria-hidden="true"></i> <span className="text-white">{!bool?'Generate Invoice/Receipt':''}</span> </div> 
+                            <div  onClick={()=>handleshowcomp('N')} className="mt-3 cursor-pointer"><i class={!bool?"fa text-yellow-500  fa-file-o":"fa fa-2x text-yellow-500 fa-bell"} aria-hidden="true"></i> <span className="text-white">{!bool?'Send Notice':''}</span> </div>
                             <div className="mt-3 cursor-pointer"><i class={!bool?"fa text-yellow-500 fa-balance-scale":"fa fa-2x text-yellow-500 fa-balance-scale"} aria-hidden="true"></i><span className="text-white">{!bool?'Account Section':''}</span> </div> 
                             </div>
                            
@@ -98,7 +100,8 @@ const Dashboardadmin=()=>{
                        {showcomponent==='TR' &&<TenantRecord/>}
                        {showcomponent==='T' &&<TenantPaymentRecord/>}
                        {showcomponent==='C' && <ClientRecord/>}  
-                       {showcomponent==='R' &&<ReceiptGenerator/>}             
+                       {showcomponent==='R' &&<ReceiptGenerator/>}  
+                       {showcomponent==='N' && <SendNotice/>}           
                    
                        
 

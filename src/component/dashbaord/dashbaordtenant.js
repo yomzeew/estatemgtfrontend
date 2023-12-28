@@ -4,6 +4,9 @@ import { useState,useEffect } from 'react'
 import { useNavigate,Navigate, useActionData } from 'react-router-dom'
 import Loader from '../loader'
 import Receipt from '../admin/receipt/receipt'
+import DisplayInbox from '../inboxmessage/displayinboxmessage'
+import ViewNotice from '../inboxmessage/viewNotice.'
+import Settings from './settings'
 const Dashbaordtenant = () => {
     const navigate=useNavigate()
     const [authcheck,setauthcheck]=useState(null)
@@ -23,6 +26,12 @@ const Dashbaordtenant = () => {
     const [Objectdata,setObjectdata]=useState('')
     const [name,setname]=useState('')
     const [showreceipt,setshowreceipt]=useState(false)
+    const [showinboxmsg,setshowinboxmsg]=useState(false)
+    const [shownotice,setshownotice]=useState(false)
+    const [countnotification,setcountnotification]=useState('')
+    const [showsetting,setshowsetting]=useState(false)
+
+   
 
     useEffect(() => {
         const handlePopstate = (event) => {
@@ -107,6 +116,21 @@ const Dashbaordtenant = () => {
         
 
              settotalfees(dataresthree.total_fees)
+             const reponsefour= await api.get(`/api/checkthedue/${tenant_id}`)
+             const dataresfour=reponsefour.data.message
+             console.log(dataresfour)
+
+             try{
+                const response=await api.get(`/api/getnotifications/${tenant_id}`)
+                const datacount=response.data.count
+                setcountnotification(datacount)
+
+            }
+            catch(error){
+                console.error(error)
+            }
+
+           
 
  
 
@@ -119,6 +143,7 @@ const Dashbaordtenant = () => {
        
        
          },[])
+         
          const handlelogout=()=>{
             localStorage.removeItem('myvalue')
             navigate('/loginpage')
@@ -145,11 +170,46 @@ const Dashbaordtenant = () => {
             }
 
           }
-         
+          const showinbox=async()=>{
+            setshowinboxmsg(true)
+            // update
+          
+
+          }
+          const shownoticefunc=(value)=>{
+            setshownotice(value)
+            setshowinboxmsg(false)
+
+          }
+
+        
     
 
     return authcheck?(
            <div className="w-screen h-screen relative">
+            {showsetting &&
+            <div className='absolute z-50' >
+                 <Settings
+                 auth={localStorage.getItem('newauth')}
+                 showsettings={(value)=>setshowsetting(value)}
+                 />
+                 </div>
+
+            }
+            { shownotice &&
+            <div className='absolute z-50'>
+                 <div className="flex justify-center">
+                    <ViewNotice
+                    shownotice={(value)=>shownoticefunc(value)}
+                    tenantID={tenantid}
+                    
+                    />
+                </div>
+                </div>
+           
+
+            }
+            
             {showreceipt &&<div className="flex justify-center">
                 <div>
                 <div className="flex justify-center">
@@ -180,8 +240,30 @@ const Dashbaordtenant = () => {
 
             </div>
             <div className='flex justify-between px-5 py-5'>
-                <div className='text-green-600'>Settings</div>
-                <div className='text-white'><i class="fa fa-inbox" aria-hidden="true"></i>Inbox</div>
+                <div onClick={()=>setshowsetting(true)} className='text-green-600'>Settings</div>
+                <div onClick={showinbox} className='text-white cursor-pointer'><i class="fa fa-inbox cursor-pointer" aria-hidden="true"></i>Inbox<span className='rounded-full  px-2 py-2 text-xs  bg-red-500 text-white text-center'>{countnotification}</span></div>
+                {showinboxmsg && <div className='absolute bg-white border border-slate-300 rounded-lg right-5 px-5 py-5'>
+                <div>
+                <div>
+
+                <button  onClick={()=>setshowinboxmsg(false)} className=" bg-red-500 text-white px-3 rounded-xl"><i class="fa fa-times" aria-hidden="true"></i>Close</button>
+            </div>
+           <div >
+                
+                <div className=''>
+                    <DisplayInbox
+                    shownotice={(value)=>shownoticefunc(value)}
+                    tenantId={tenantid}
+                    />
+                    
+                    </div>
+            
+            </div>
+
+                </div>
+                </div>
+
+            }
 
             </div>
             <div className='px-10'>

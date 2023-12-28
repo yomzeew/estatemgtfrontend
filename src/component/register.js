@@ -284,10 +284,6 @@ function Register() {
       seterrormessage('Fill Your MobileNo')
       return
     }
-    if (!AltMobileNo){
-      seterrormessage('Fill Your Alternative MobileNo')
-      return
-    }
     const regex = /\d/;
      regex.test(Password);
     if(!regex.test(Password) && Password.length!==6){
