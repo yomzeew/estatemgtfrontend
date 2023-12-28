@@ -22,7 +22,7 @@ const Settings = ({auth,showsettings}) => {
     
       },[StateOrigin])
       const fetchdata=async()=>{
-        const data={value:auth}
+        const data={value:localStorage.getItem('newauth')}
         try{
             const response=await api.post('/api/selectuser/',data)
             const datares=response.data.data
