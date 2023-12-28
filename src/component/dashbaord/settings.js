@@ -57,10 +57,10 @@ const Settings = ({auth,showsettings}) => {
                 <div className='mt-2'><i onClick={handleshow} class="fa cursor-pointer fa-2x fa-arrow-circle-left text-yellow-500" aria-hidden="true"></i></div>
                 <div className='text-2xl flex justify-center text-green-900'><div><div><i class="fa fa-cogs" aria-hidden="true"></i>Settings</div><div className='h-2 w-12 bg-green-900'></div></div></div>
                 <div className='mt-20 border-b-2 border-b-slate-400 pb-5 '>
-                   <div className='mt-3'>Name: <span className='font-bold'>{datauser.firstname+' '+datauser.lastname}</span></div>
-                   <div className='mt-3'>Occupation: <span>{datauser.occupation}</span></div>
-                   <div className='mt-3'>Mobile No: <span>{datauser.mobileno}</span></div>
-                   <div className='mt-3'>Email: <span>{datauser.email}</span></div>
+                   <div className='mt-3'>Name: <span className='font-bold'>{(datauser.firstname+' '+datauser.lastname)||'Not Available'}</span></div>
+                   <div className='mt-3'>Occupation: <span>{datauser.occupation||'Not Available'}</span></div>
+                   <div className='mt-3'>Mobile No: <span>{datauser.mobileno ||'Not Available'}</span></div>
+                   <div className='mt-3'>Email: <span>{datauser.email ||'Not Available'}</span></div>
 
                 </div>
                 <div className="flex justify-center mt-5">

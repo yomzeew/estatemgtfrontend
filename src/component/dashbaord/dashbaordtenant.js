@@ -241,7 +241,7 @@ const Dashbaordtenant = () => {
             </div>
             <div className='flex justify-between px-5 py-5'>
                 <div onClick={()=>setshowsetting(true)} className='text-green-600'>Settings</div>
-                <div onClick={showinbox} className='text-white cursor-pointer'><i class="fa fa-inbox cursor-pointer" aria-hidden="true"></i>Inbox<span className='rounded-full  px-2 py-2 text-xs  bg-red-500 text-white text-center'>{countnotification}</span></div>
+                <div onClick={showinbox} className='text-white cursor-pointer'><i class="fa fa-inbox cursor-pointer" aria-hidden="true"></i>Inbox<span className='rounded-full  px-2 py-2 text-xs  bg-red-500 text-white text-center'>{countnotification||0}</span></div>
                 {showinboxmsg && <div className='absolute bg-white border border-slate-300 rounded-lg right-5 px-5 py-5'>
                 <div>
                 <div>
