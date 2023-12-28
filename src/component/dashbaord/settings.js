@@ -23,6 +23,7 @@ const Settings = ({auth,showsettings}) => {
       },[StateOrigin])
       const fetchdata=async()=>{
         const data={value:localStorage.getItem('newauth')}
+        console.log(data)
         try{
             const response=await api.post('/api/selectuser/',data)
             const datares=response.data.data
@@ -30,6 +31,7 @@ const Settings = ({auth,showsettings}) => {
             setdatauser(datares)
 
         }catch(error){
+            console.error(error)
 
         }
         
