@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import api from "../../api/api";
+import Loader from "../../loader";
 
 const TenantRecord=()=>{
     const [data,setdata]=useState([]);
@@ -7,7 +8,9 @@ const TenantRecord=()=>{
     const [showupdate,setshowupdate]=useState(false)
     const [errormessage,seterrormessage]=useState('')
     const [confirmdelete,setconfirmdelete]=useState(false)
+    const [showloader,setshowloader]=useState(false)
     const fetchdata=async()=>{
+        setshowloader(true)
         try{
             const response=await api.get('/api/selectall')
             const datares=response.data.data
@@ -17,6 +20,10 @@ const TenantRecord=()=>{
         }catch(error){
             console.error(error)
 
+        }
+        finally{
+
+            setshowloader(false)
         }
         
     }
@@ -211,6 +218,7 @@ const TenantRecord=()=>{
               { data.length<0 && <tr>
                     <td colSpan={10}>No Record</td>
                     </tr>}
+                    {showloader && <tr><td colSpan={10} align="center"><Loader/></td></tr>}
 
                 </tbody>
          

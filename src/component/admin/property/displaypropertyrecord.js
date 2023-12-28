@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import api from "../../api/api";
 import Updatepropertyform from "./updateformproperty";
+import Loader from "../../loader";
 
 const DisplayPropertyRec=()=>{
     const [data,setdata]=useState([]);
@@ -8,7 +9,9 @@ const DisplayPropertyRec=()=>{
     const [showupdate,setshowupdate]=useState(false)
     const [errormessage,seterrormessage]=useState('')
     const [confirmdelete,setconfirmdelete]=useState(false)
+    const [showloader,setshowloader]=useState(false)
     const fetchdata=async()=>{
+        setshowloader(true)
         try{
             const response=await api.get('/api/selectproperty')
             const datares=response.data.data
@@ -17,6 +20,10 @@ const DisplayPropertyRec=()=>{
 
         }catch(error){
             console.error(error)
+
+        }
+        finally{
+            setshowloader(false)
 
         }
         
@@ -181,6 +188,7 @@ const DisplayPropertyRec=()=>{
                     <tr>
                         <td colSpan={10}>No Record</td>
                         </tr>}
+                        {showloader && <tr><td colSpan={10} align="center"><Loader/></td></tr>}
 
                     </tbody>
              

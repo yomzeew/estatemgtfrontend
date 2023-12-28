@@ -1,12 +1,16 @@
 import { useEffect, useState } from "react"
 import api from "../../api/api";
+import Loader from "../../loader";
 const ClientRecord=()=>{
     const [data,setdata]=useState([]);
     const [id,setid]=useState('');
     const [showupdate,setshowupdate]=useState(false)
     const [errormessage,seterrormessage]=useState('')
     const [confirmdelete,setconfirmdelete]=useState(false)
+    const [showloader,setshowloader]=useState(false)
     const fetchdata=async()=>{
+        setshowloader(true)
+
         try{
             const response=await api.get('/api/selectallclient')
             const datares=response.data.data
@@ -16,6 +20,9 @@ const ClientRecord=()=>{
         }catch(error){
             console.error(error)
 
+        }
+        finally{
+            setshowloader(false)
         }
         
     }
@@ -33,6 +40,7 @@ const ClientRecord=()=>{
 
     }
     const finaldelete=async()=>{
+
        
         try{
             const response=await api.delete(`/api/delectclient/${id}`)
@@ -50,6 +58,9 @@ const ClientRecord=()=>{
 
         }catch(error){
             console.error(error)
+
+        }
+        finally{
 
         }
     }
@@ -78,7 +89,7 @@ const ClientRecord=()=>{
         <div>
             <div className="flex justify-center">
             <div className="bg-green-900 w-52 rounded-b-xl text-yellow-500 h-8 flex justify-center">
-            <i class="fa fa-plus" aria-hidden="true"></i>Display Property Record
+            <i class="fa fa-plus" aria-hidden="true"></i>Display Client Record
         </div>
         
 
@@ -204,12 +215,16 @@ const ClientRecord=()=>{
                 <button onClick={()=>handledelete(items.id)} className="text-xs"><i class="fa fa-trash" aria-hidden="true"></i>Delete Record</button>
                 </td>
                 </tr>
+                
                 );
+
             })
+            
           }
               { data.length<0 && <tr>
                     <td colSpan={10}>No Record</td>
                     </tr>}
+                   {showloader && <tr><td colSpan={10} align="center"><Loader/></td></tr>}
 
                 </tbody>
          

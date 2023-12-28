@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import api from '../../api/api'
 import house from '../image/Real-Estate-2.jpg'
+import Loader from '../../loader'
 const TenantPaymentRecord=()=>{
     const [data,setdata]=useState([])
     const [datatenant,setdatatenant]=useState([])
@@ -15,6 +16,7 @@ const TenantPaymentRecord=()=>{
     const [propertid,setpropertyid]=useState('')
     const [Base64String,setBase64String]=useState('')
     const [searchvalue,setsearchvalue]=useState('')
+    const [showloader,setshowloader]=useState(false)
     
     const searchinput=async(e)=>{
         const data={value:searchvalue}
@@ -39,6 +41,7 @@ const TenantPaymentRecord=()=>{
     }
 
     const fetchdata=async()=>{
+        setshowloader(true)
        try{
         const response=await api.get('/api/selectallrent')
         const datares=response.data.data
@@ -49,6 +52,10 @@ const TenantPaymentRecord=()=>{
         
 
        } 
+       finally{
+        setshowloader(false)
+
+       }
     }
     const fetchtenant=async()=>{
         try{
@@ -539,6 +546,7 @@ const TenantPaymentRecord=()=>{
                     )
                 })
                }
+               {showloader&&<div className="flex justify-center"><Loader/></div>}
 
 
                 </div>

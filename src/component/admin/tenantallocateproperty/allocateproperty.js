@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react"
 import api from "../../api/api"
 import Addtenantform from "./addtenantform"
+import Loader from "../../loader"
 const Allocateproperty=({propertyid})=>{
     const [tenantid,settenantid]=useState(1)
     const [data,setdata]=useState([])
     const [showallocate,setshowallocate]=useState(true)
     const [showform,setshowform]=useState(false)
+    const [showloader,setshowloader]=useState(false)
     const handlenext=(tenantidid,firstname,lastname)=>{
         setshowallocate(false)
         setshowform(true)
@@ -20,6 +22,7 @@ const Allocateproperty=({propertyid})=>{
 
     }
     const fetchdata=async()=>{
+        setshowloader(true)
         try{
             const response=await api.get('/api/selectall')
             const datares=response.data.data
@@ -27,6 +30,10 @@ const Allocateproperty=({propertyid})=>{
 
         }catch(error){
             console.error(error)
+        }
+        finally{
+            setshowloader(false)
+
         }
 
     }
@@ -65,6 +72,7 @@ const Allocateproperty=({propertyid})=>{
                 
             </div>
             )) }
+            {showloader&&<div className="flex justify-center"><Loader/></div>}
             </div>
             
 

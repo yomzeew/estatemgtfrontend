@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import api from '../api/api'
 import RealEstate from './image/Real-Estate-2.jpg'
+import Loader from '../loader'
 
 const Displayproperty=({showtenant,propertyid})=>{
     const[data,setdata]=useState([])
@@ -9,6 +10,7 @@ const Displayproperty=({showtenant,propertyid})=>{
     const [searchvalue,setsearchvalue]=useState('')
     const [errormessage,seterrormessage]=useState('')
     const [checked,setchecked]=useState(true)
+    const [showloader,setshowloader]=useState(false)
 
     const checkedRefone=useRef(null)
     const checkedReftwo=useRef(null)
@@ -16,6 +18,7 @@ const Displayproperty=({showtenant,propertyid})=>{
   
  
     const fetchdata=async()=>{
+        setshowloader(true)
         try{
             const response=await api.get('/api/selectproperty')
             const datares=response.data.data
@@ -24,6 +27,9 @@ const Displayproperty=({showtenant,propertyid})=>{
 
         }catch(error){
 
+        }
+        finally{
+            setshowloader(false)
         }
       
 
@@ -196,6 +202,7 @@ const Displayproperty=({showtenant,propertyid})=>{
                 </div>
 
             </div>)})}
+            {showloader&&<div className="flex justify-center"><Loader/></div>}
             
 
             </div>

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import api from "../../api/api"
 import Receipt from "./receipt"
+import Loader from "../../loader"
 
 const GenerateListtenant = () => {
     const [data, setdata] = useState([])
@@ -9,6 +10,8 @@ const GenerateListtenant = () => {
     const [tenanttoperty, settenanttoperty] = useState([])
     const [showreceipt,setshowreceipt]=useState(false)
     const [objectdata,setObjectdata]=useState('')
+    const [showloader,setshowloader]=useState(false)
+
    
     
     const fetchtenant = async () => {
@@ -26,11 +29,16 @@ const GenerateListtenant = () => {
 
 
 
-        } catch (error) {
+        } catch(error) {
+            console.error(error)
+
+        }
+        finally{
 
         }
     }
     const fetchpayment = async () => {
+        setshowloader(true)
         try {
             const response = await api.get('/api/selectallpayment')
             const datares = response.data.data
@@ -49,7 +57,13 @@ const GenerateListtenant = () => {
 
 
 
-        } catch (error) {
+
+        } catch(error) {
+            console.error(error)
+
+        }
+        finally{
+            setshowloader(false)
 
         }
     }
@@ -260,6 +274,7 @@ const GenerateListtenant = () => {
                                 }
                             })
                             }
+                             {showloader && <tr><td colSpan={10} align="center"><Loader/></td></tr>}
 
 
                         </tbody>
