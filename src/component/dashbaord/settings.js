@@ -25,7 +25,7 @@ const Settings = ({auth,showsettings}) => {
         const data={value:localStorage.getItem('newauth')}
         console.log(data)
         try{
-            const response=await api.post('/api/selectuser/',data)
+            const response=await api.post('/api/selectuser',data)
             const datares=response.data.data
         
             setdatauser(datares)
