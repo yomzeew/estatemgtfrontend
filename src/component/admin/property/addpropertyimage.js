@@ -106,6 +106,7 @@ const submitdata=async()=>{
             <div className="text-right">#Client ID {getid}</div>
             <div className="text-center text-green-600 text-lg">{errormessage}</div>
             <div className="h-400 overflow-y-scroll">
+              <div className="text-xs text-center">Images Not more than 20kb</div>
 
            
     <div

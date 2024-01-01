@@ -86,7 +86,7 @@ const TenantRecord=()=>{
         <div>
             <div className="flex justify-center">
             <div className="bg-green-900 w-52 rounded-b-xl text-yellow-500 h-8 flex justify-center">
-            <i class="fa fa-plus" aria-hidden="true"></i>Display Property Record
+            <i class="fa fa-plus" aria-hidden="true"></i>Display Tenant Record
         </div>
         
 

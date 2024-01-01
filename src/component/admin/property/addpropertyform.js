@@ -83,16 +83,16 @@ const Addpropertyform=({showaddprops,showaddimage,getname,getid})=>{
                     <div className="mt-2">
                        <div className="text-xs">Rent Fees</div> 
                     </div>
-                    <input  onChange={(e)=>setrentfees(e.target.value)} className="w-52 md:w-72 h-8 outline-0 border px-2 rounded-lg"/>
+                    <input type="number"  onChange={(e)=>setrentfees(e.target.value)} className="w-52 md:w-72 h-8 outline-0 border px-2 rounded-lg"/>
                     <div className="mt-2">
                        <div className="text-xs">Agent Fees</div> 
                     </div>
-                    <input onChange={(e)=>setagentfees(e.target.value)} className="w-52 md:w-72 h-8 outline-0 border px-2 rounded-lg"/>
+                    <input type="number" onChange={(e)=>setagentfees(e.target.value)} className="w-52 md:w-72 h-8 outline-0 border px-2 rounded-lg"/>
 
                     <div className="mt-2">
                        <div className="text-xs">Agreement Fees</div> 
                     </div>
-                    <input onChange={(e)=>setagreementfees(e.target.value)} className="w-52 md:w-72 h-8 outline-0 border px-2 rounded-lg"/>
+                    <input type="number" onChange={(e)=>setagreementfees(e.target.value)} className="w-52 md:w-72 h-8 outline-0 border px-2 rounded-lg"/>
                     <div className="flex justify-between mt-3">
                         <button onClick={handleback} className="px-2 bg-green-900 text-white"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Back</button>
                         <button onClick={handlenext} className="px-2 bg-green-900 text-white"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i> Next</button>
