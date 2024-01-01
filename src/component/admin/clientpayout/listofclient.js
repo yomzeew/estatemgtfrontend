@@ -38,8 +38,9 @@ const ListClient=()=>{
         setname(firstname+' '+lastname)
 
     }
-    const showlistfunc=(value )=>{
+    const showlistfunc=(value,valuetwo)=>{
         setshowlist(value)
+        setshowclientpayout(valuetwo)
         
 
     }
@@ -70,7 +71,7 @@ const ListClient=()=>{
         {showclientpayout &&
         <ClientPayout
         id={id}
-        showlist={(value)=>showlistfunc(value)}
+        showlist={(value,valuetwo)=>showlistfunc(value,valuetwo)}
         name={name}
 
         />}

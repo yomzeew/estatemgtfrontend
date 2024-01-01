@@ -24,7 +24,8 @@ const ClientPayout=({id,showlist,name})=>{
 
     }
     const handleshow=()=>{
-        showlist(true)
+        showlist(true,false)
+        
     }
     const fetchdata=async()=>{
     
