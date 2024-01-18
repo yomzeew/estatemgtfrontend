@@ -157,15 +157,16 @@ const Displayproperty=({showtenant,propertyid})=>{
             </div>
             <div className='overflow-y-scroll h-567'>
             {data.length>0&&data.map((items,index)=>{
-                const image=(JSON.parse(items.images_base64))
+                const image=(JSON.parse(items.images_base64)||[])
                
                 return(
 
         
                 <div className="md:w-96 w-56 border border-dashed bg-slate-200 rounded-lg h-auto gap-5 flex flex-col md:flex-row px-3 py-5 mt-3 border-black">
                 <div className="md:w-1/2 w-full">
-                    
-                    <img onClick={()=>(handleimages(image))} src={image[0]} className='object-fit rounded-2xl' />
+                    {image.length>0 &&
+                    <img onClick={()=>(handleimages(image))} src={image[0]} alt={'No image'} className='object-fit rounded-2xl' />
+            }
 
                 </div>
                 <div className="md:w-1/2 w-full">

@@ -10,6 +10,7 @@ import ReceiptGenerator from "./receipt/receiptGenerator";
 import SendNotice from "./sendnotification/sendnotice";
 import ClientPayout from "./clientpayout/clientpayout";
 import ListClient from "./clientpayout/listofclient";
+import SelectClient from "./newclientandproperty/selectclient";
 
 
 const Dashboardadmin=()=>{
@@ -71,6 +72,7 @@ const Dashboardadmin=()=>{
                             <div  onClick={()=>handleshowcomp('R')} className="mt-3 cursor-pointer"><i class={!bool?"fa text-yellow-500  fa-file-o":"fa fa-2x text-yellow-500 fa-file-o"} aria-hidden="true"></i> <span className="text-white">{!bool?'Generate Invoice/Receipt':''}</span> </div> 
                             <div  onClick={()=>handleshowcomp('N')} className="mt-3 cursor-pointer"><i class={!bool?"fa text-yellow-500  fa-file-o":"fa fa-2x text-yellow-500 fa-bell"} aria-hidden="true"></i> <span className="text-white">{!bool?'Send Notice':''}</span> </div>
                             <div  onClick={()=>handleshowcomp('CL')} className="mt-3 cursor-pointer"><i class={!bool?"fa text-yellow-500  fa-exchange":"fa fa-2x text-yellow-500 fa-exchange"} aria-hidden="true"></i> <span className="text-white">{!bool?'Client Payout':''}</span> </div>
+                            <div  onClick={()=>handleshowcomp('CP')} className="mt-3 cursor-pointer"><i class={!bool?"fa text-yellow-500  fa-list":"fa fa-2x text-yellow-500 fa-list"} aria-hidden="true"></i> <span className="text-white">{!bool?'Client Property':''}</span> </div>
                             <div className="mt-3 cursor-pointer"><i class={!bool?"fa text-yellow-500 fa-balance-scale":"fa fa-2x text-yellow-500 fa-balance-scale"} aria-hidden="true"></i><span className="text-white">{!bool?'Account Section':''}</span> </div> 
                             </div>
                            
@@ -105,7 +107,8 @@ const Dashboardadmin=()=>{
                        {showcomponent==='C' && <ClientRecord/>}  
                        {showcomponent==='R' &&<ReceiptGenerator/>}  
                        {showcomponent==='N' && <SendNotice/>}  
-                       {showcomponent==='CL' && <ListClient/>}         
+                       {showcomponent==='CL' && <ListClient/>}  
+                       {showcomponent==='CP' && <SelectClient/>}       
                    
                        
 

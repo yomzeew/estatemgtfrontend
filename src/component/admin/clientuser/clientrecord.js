@@ -65,7 +65,7 @@ const ClientRecord=()=>{
         }
     }
     return(
-        <div className="md:w-750 w-64 bg-slate-200 flex justify-center">
+        <div className="md:w-full w-64 bg-slate-200 flex justify-center">
         {confirmdelete && <div className="absolute top-40 z-50 flex justify-center items-center">
        
             <div className="w-52 rounded-xl bg-slate-100 h-44 flex justify-evenly items-center">
@@ -96,7 +96,7 @@ const ClientRecord=()=>{
             </div>
             <div className="text-center">{errormessage}</div>
         
-        <div className=" relative overflow-scroll h-567 md:w-750 w-64">
+        <div className=" relative overflow-scroll h-567 md:w-1200 w-64">
             <table className="border-0 w-full mt-5">
                 <thead>
 
@@ -106,7 +106,7 @@ const ClientRecord=()=>{
                     S/N
                 </td>
                 <td className="text-center">
-                    Tenant ID
+                    Client ID
                 </td>
                 <td className="text-center">
                    First Nsme
