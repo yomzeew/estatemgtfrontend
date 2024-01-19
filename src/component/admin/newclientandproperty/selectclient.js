@@ -140,6 +140,7 @@ const SelectClient=()=>{
                 })
                 setexpensesall(datares)
                 console.log(datares)
+                console.log(getdataarray)
             }
 
         }catch(error){
