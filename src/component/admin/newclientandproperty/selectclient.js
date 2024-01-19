@@ -139,6 +139,7 @@ const SelectClient=()=>{
                     setTotalGrandExp(totalgrandexp)
                 })
                 setexpensesall(datares)
+                console.log(clientid)
                 console.log(datares)
                 console.log(getdataarray)
             }
