@@ -58,6 +58,7 @@ const ViewProperty=({getid,block_id})=>{
         try{
             const response=await api.get('/api/selectexpall')
             const datares=response.data.data
+            console.log(datares)
             if(datares.length>0){
                 setexpensesall(datares)
             }
@@ -109,8 +110,9 @@ const ViewProperty=({getid,block_id})=>{
                 let totalexpenses=0
 
                 const gettheexpensesarraybyid=expensesall.filter((exp)=>(
-                  exp.property_id===item.id
+                  JSON.parse(exp.property_id)===JSON.parse(item.id)
                 ))
+                
                 gettheexpensesarraybyid.length>0&&gettheexpensesarraybyid.map((expenses,index)=>{
                     const getexp=JSON.parse(expenses.expenses)
                     totalexpenses= totalexpenses+getexp

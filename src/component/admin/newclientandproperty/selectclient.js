@@ -6,6 +6,7 @@ const SelectClient=()=>{
     const [name,setname]=useState('')
     const [clientid,setclientid]=useState(0)
     const [data,setdata]=useState([])
+    const [dataexpenses,setdataexpenses]=useState([])
     const [searchvalue,setsearchvalue]=useState('')
     const [showlistclient,setshowlistclient]=useState(true)
     const [firstname,setfirstname]=useState('')
@@ -49,8 +50,23 @@ const SelectClient=()=>{
         fetchallblock()
 
     },[clientid])
+
+    const getallexpense=async()=>{
+        try{
+            const response=await api.get('/api/selectexpall')
+            const datares=response.data.data
+            setdataexpenses(datares)
+            console.log(datares)
+
+        }catch(error){
+            console.error(error)
+
+        }
+
+    } 
     useEffect(()=>{
         fetchdata()
+        getallexpense()
         
     },[])
     const handlesearch=(e)=>{
@@ -123,35 +139,28 @@ const SelectClient=()=>{
        
     }
     const fetchallexpenses=async()=>{
-        try{
-            const response=await api.get('/api/selectexpall')
-            const datares=response.data.data
             let totalgrandexp=0
-            if(datares.length>0){
-                const getdataarray=datares.filter((exp)=>(
-                    exp.client_id===clientid
+            console.log(dataexpenses)
+            if(dataexpenses.length>0){
+                const getdataarray=dataexpenses.filter((exp)=>(
+                    JSON.parse(exp.client_id)===JSON.parse(clientid)
 
                 ))
                 
-                getdataarray.length>0&&getdataarray.map((itemrent,index)=>{
+                getdataarray.length>0&&getdataarray.map(async(itemrent,index)=>{
                     const expenses=JSON.parse(itemrent.expenses)
                     totalgrandexp=totalgrandexp+expenses
-                    setTotalGrandExp(totalgrandexp)
+                    await setTotalGrandExp(totalgrandexp)
+                   
                 })
-                setexpensesall(datares)
+                setexpensesall(dataexpenses)
                 console.log(clientid)
-                console.log(datares)
                 console.log(getdataarray)
             }
 
-        }catch(error){
-
-        }
     }
     useEffect(()=>{
         fetchallexpenses()
-    
-
     },[clientid])
     ///selectproperty
     const fetchallrent=async()=>{
@@ -161,7 +170,7 @@ const SelectClient=()=>{
             let totalgrandfees=0
             if(datares.length>0){
                 const getdataarray=datares.filter((rent)=>(
-                    rent.client_id===clientid
+                    JSON.parse(rent.client_id)===JSON.parse(clientid)
 
                 ))
                 
