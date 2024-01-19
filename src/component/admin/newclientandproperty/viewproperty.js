@@ -69,6 +69,8 @@ const ViewProperty=({getid,block_id})=>{
         fetchallexpenses()
 
     },[])
+   
+   
     return(
         <div className="md:w-750 w-64 bg-white px-5 py-5 h-567 overflow-y-scroll">
             {showimage &&

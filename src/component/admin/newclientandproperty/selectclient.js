@@ -139,6 +139,7 @@ const SelectClient=()=>{
                     setTotalGrandExp(totalgrandexp)
                 })
                 setexpensesall(datares)
+                console.log(datares)
             }
 
         }catch(error){
@@ -147,6 +148,7 @@ const SelectClient=()=>{
     }
     useEffect(()=>{
         fetchallexpenses()
+    
 
     },[clientid])
     ///selectproperty
