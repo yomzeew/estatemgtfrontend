@@ -315,7 +315,7 @@ const SelectClient=()=>{
                 {groupproperty.length>0 &&groupproperty.map((items,index)=>{
                     let totalexpenses=0
                    const getexpensesarry=expensesall.filter((exp)=>(
-                    exp.properties_group===items.id
+                    JSON.parse(exp.properties_group)===JSON.parse(items.id)
 
                    ))
                    getexpensesarry.length&&getexpensesarry.map((exps)=>{
@@ -325,7 +325,7 @@ const SelectClient=()=>{
                    })
                    let totalrent=0
                    const getrentarry=totalrentall.filter((rent)=>(
-                    rent.properties_group===items.id&&rent.client_id===clientid
+                    JSON.parse(rent.properties_group)===JSON.parse(items.id)&&JSON.parse(rent.client_id)===JSON.parse(clientid)
 
                    ))
                    getrentarry.length&&getrentarry.map((rent)=>{
